@@ -1,0 +1,126 @@
+{
+    "languageModel": {
+        "types": [
+            {
+                "name": "MyFriends",
+                "values": [
+                    {
+                        "id": "3",
+                        "name": {
+                            "value": "Dasha",
+                            "synonyms": [
+                                "Daria"
+                            ]
+                        }
+                    },
+                    {
+                        "id": "1",
+                        "name": {
+                            "value": "Marina",
+                            "synonyms": [
+                                "Maya",
+                                "Marisha"
+                            ]
+                        }
+                    },
+                    {
+                        "id": "2",
+                        "name": {
+                            "value": "Alexey",
+                            "synonyms": [
+                                "Lyoha"
+                            ]
+                        }
+                    }
+                ]
+            }
+        ],
+        "intents": [
+            {
+                "name": "AMAZON.CancelIntent",
+                "samples": []
+            },
+            {
+                "name": "AMAZON.HelpIntent",
+                "samples": []
+            },
+            {
+                "name": "AMAZON.StopIntent",
+                "samples": []
+            },
+            {
+                "name": "FriendFollowersCount",
+                "samples": [
+                    "How many followers does {Friend} has",
+                    "{Friend} followers count"
+                ],
+                "slots": [
+                    {
+                        "name": "Friend",
+                        "type": "MyFriends",
+                        "samples": [
+                            "His name is {Friend}",
+                            "Her name is {Friend}"
+                        ]
+                    }
+                ]
+            },
+            {
+                "name": "MyFollowersCount",
+                "samples": [
+                    "How many followers do I have",
+                    "My followers count"
+                ],
+                "slots": []
+            },
+            {
+                "name": "MyLikes",
+                "samples": [
+                    "My likes",
+                    "How much likes do I have"
+                ],
+                "slots": []
+            }
+        ],
+        "invocationName": "investigate"
+    },
+    "prompts": [
+        {
+            "id": "Elicit.Intent-FriendFollowersCount.IntentSlot-Friend",
+            "variations": [
+                {
+                    "type": "PlainText",
+                    "value": "What's your friend name?"
+                },
+                {
+                    "type": "PlainText",
+                    "value": "What is his name?"
+                },
+                {
+                    "type": "PlainText",
+                    "value": "What is her name?"
+                }
+            ]
+        }
+    ],
+    "dialog": {
+        "intents": [
+            {
+                "name": "FriendFollowersCount",
+                "confirmationRequired": false,
+                "prompts": {},
+                "slots": [
+                    {
+                        "name": "Friend",
+                        "type": "MyFriends",
+                        "elicitationRequired": true,
+                        "confirmationRequired": false,
+                        "prompts": {
+                            "elicitation": "Elicit.Intent-FriendFollowersCount.IntentSlot-Friend"
+                        }
+                    }
+                ]
+            }
+        ]
+    }
+}
